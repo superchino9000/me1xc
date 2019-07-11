@@ -1,0 +1,21 @@
+A = xlsread('ImpulseResponseData');
+
+t = A (:, 1);
+x = A (:, 2);
+
+m = 1
+w = 12.5 %arbitrary
+z = 0.08 %arbitrary
+
+x_func = (1/(w*sqrt(1-z^2)))*exp(-z*w*t).*sin(w.*t*sqrt(1-z^2));
+
+Distplacement = [-0.6:0.02:0.08];
+Time = [0:0.5:3];
+
+scatter (t, x)
+title('Mass Spring Damper System')
+xlabel('Time, t[s]')
+ylabel ('Displacement, x [m]')
+hold on
+plot (t, x_func, 'r', 'linewidth', 2)
+hold off
